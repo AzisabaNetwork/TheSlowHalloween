@@ -7,6 +7,6 @@ BlockLuck: 1
 MobLuckAmount: 70
 MobLuck: 1
 #ブロックを壊した時に出るアイテム名の設定(カラーコード使用可)
-BlockBlockDropItemName: "&5美味しい&6飴ちゃん"
+BlockDropItemName: "&5美味しい&6飴ちゃん"
 #モブを倒した時に出るアイテム名の設定(カラーコード使用可)
 MobDropItemName: "&5美味しい&6飴ちゃん"
