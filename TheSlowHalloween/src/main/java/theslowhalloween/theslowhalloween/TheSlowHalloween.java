@@ -15,7 +15,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public final class TheSlowHalloween extends JavaPlugin implements Listener {
@@ -39,14 +41,37 @@ public final class TheSlowHalloween extends JavaPlugin implements Listener {
         if (cmd.getName().equalsIgnoreCase("tsh")) {
             if (args.length <= 0) return true;
             if (args[0].equalsIgnoreCase("reload")) {
-                //OP以外起動しないように設定
-                if (sender.hasPermission("TheSlowHalloween.permission.Admin")) {
+                if(sender.hasPermission("TheSlowHalloween.permission.Admin")) {
                     reloadConfig();
                     p.sendMessage("configリロードしました");
                 }
             }
+            if (args[0].equalsIgnoreCase("help")) {
+                if(sender.hasPermission("TheSlowHalloween.permission.Admin")) {
+                    sender.sendMessage("どうされましたか?\nエラーが出ていれば46kuriにディスコードでメンションを送ってください");
+                }
+            }
         }
         return true;
+    }
+
+    @SuppressWarnings("NullableProblems")
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (!command.getName().equalsIgnoreCase("tsh")) return super.onTabComplete(sender, command, alias, args);
+        if (args.length == 1) {
+            if(sender.hasPermission("TheSlowHalloween.permission.Admin")) {
+                if (args[0].length() == 0) {
+                    return Arrays.asList("reload","help");
+                } else {
+                    //入力されている文字列と先頭一致
+                    if ("reload".startsWith(args[0])) {
+                        return Collections.singletonList("reload");
+                    }
+                }
+            }
+        }
+        return super.onTabComplete(sender, command, alias, args);
     }
 
     @EventHandler
