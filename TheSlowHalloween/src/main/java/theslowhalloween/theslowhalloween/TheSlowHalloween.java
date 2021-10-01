@@ -5,9 +5,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -223,7 +221,7 @@ public final class TheSlowHalloween extends JavaPlugin implements Listener {
         String endWorld = getConfig().getString("end");
         World world = entity.getWorld();
         if (world.getName().equals(normalWorld) || world.getName().equals(netherWorld) || world.getName().equals(endWorld)) {
-            if (entity instanceof Zombie) {
+            if (entity.getType() == EntityType.ZOMBIE || entity.getType() == EntityType.SKELETON || entity.getType() == EntityType.SPIDER || entity.getType() == EntityType.CREEPER) {
                 Random random = new Random();
                 int LuckAmount = random.nextInt(getConfig().getInt("MobLuckAmount"));
                 int Luck = random.nextInt(getConfig().getInt("MobLuck"));
