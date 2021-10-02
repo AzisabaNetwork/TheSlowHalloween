@@ -205,6 +205,8 @@ public final class TheSlowHalloween extends JavaPlugin implements Listener {
                     itemStack.setItemMeta(itemMeta);
                     if (LuckAmount <= Luck) {
                         player.getWorld().dropItem(block.getLocation(),itemStack);
+                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 2,0);
+                        player.spawnParticle(Particle.DRAGON_BREATH,block.getX(),block.getY(),block.getZ(),10);
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',itemName + "&fを掘り当てました!"));
                     }
                 }
@@ -235,6 +237,7 @@ public final class TheSlowHalloween extends JavaPlugin implements Listener {
                 itemStack.setItemMeta(itemMeta);
                 if (LuckAmount <= Luck) {
                     killer.getWorld().dropItem(entity.getLocation(),itemStack);
+                    killer.getWorld().playSound(killer.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 2,0);
                     killer.sendMessage(ChatColor.translateAlternateColorCodes('&',entity.getName() + "&fが" + itemName + "&fを落としたよ!"));
                 }
             }
