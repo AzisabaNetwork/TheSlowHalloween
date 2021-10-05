@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -72,7 +73,7 @@ public final class TheSlowHalloween extends JavaPlugin implements Listener {
         return super.onTabComplete(sender, command, alias, args);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onBreak(BlockBreakEvent e) {
         Player player = e.getPlayer();
         Block block = e.getBlock();
@@ -83,6 +84,8 @@ public final class TheSlowHalloween extends JavaPlugin implements Listener {
         String endWorld = getConfig().getString("end");
         World world = block.getWorld();
         if (world.getName().equals(normalWorld) || world.getName().equals(netherWorld) || world.getName().equals(endWorld)) {
+            if (Math.abs(block.getLocation().getX() - world.getSpawnLocation().getX()) < 20) return;
+            if (Math.abs(block.getLocation().getZ() - world.getSpawnLocation().getZ()) < 20) return;
             if (material == Material.SAND
                     || material == Material.STONE
                     || material == Material.GRASS_BLOCK
