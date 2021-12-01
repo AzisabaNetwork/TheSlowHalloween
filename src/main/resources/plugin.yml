@@ -1,6 +1,6 @@
 name: TheSlowHalloween
 version: '${project.version}'
-main: theslowhalloween.theslowhalloween.TheSlowHalloween
+main: com.github.sirokuri_.theslowhalloween.TheSlowHalloween
 api-version: 1.17
 authors: [46kuri_]
 description: TSLplugin
